@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+
+using System;
 using System.Globalization;
 using System.IO;
 using UnityEditor;
@@ -7,13 +9,12 @@ using Object = UnityEngine.Object;
 
 public class AssetUtils {
     private static readonly string DirectorySeparator = Path.DirectorySeparatorChar.ToString(CultureInfo.InvariantCulture);
-    private readonly string folderName;
     private readonly string localFolderName;
     private readonly string fullAssetDirectory;
 
     public AssetUtils(params string[] baseDirectory)
     {
-        folderName = CreatePath(baseDirectory);
+        string folderName = CreatePath(baseDirectory);
         fullAssetDirectory = CreatePath(Application.dataPath, folderName);
         localFolderName = CreatePath("Assets", folderName);
     }
@@ -65,3 +66,4 @@ public class AssetUtils {
         return asset;
     }
 }
+#endif
