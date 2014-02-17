@@ -10,12 +10,11 @@ using Object = UnityEngine.Object;
 public class AssetUtils {
     private static readonly string DirectorySeparator = Path.DirectorySeparatorChar.ToString(CultureInfo.InvariantCulture);
     private readonly string localFolderName;
-    private readonly string fullAssetDirectory;
+    private readonly string folderName;
 
     public AssetUtils(params string[] baseDirectory)
     {
-        string folderName = CreatePath(baseDirectory);
-        fullAssetDirectory = CreatePath(Application.dataPath, folderName);
+        folderName = CreatePath(baseDirectory);
         localFolderName = CreatePath("Assets", folderName);
     }
 
@@ -48,7 +47,7 @@ public class AssetUtils {
 
     public T CreateAsset<T>(T asset, string fileName) where T : Object
     {
-        string fullAssetPath = CreatePath(fullAssetDirectory, fileName);
+        string fullAssetPath = CreatePath(Application.dataPath, folderName, fileName);
         string directoryName = Path.GetDirectoryName(fullAssetPath);
         string assetPath = CreatePath(localFolderName, fileName);
         if (directoryName != null)
