@@ -19,7 +19,7 @@ public class AssetUtils {
     }
 
 
-    private static string CreatePath(params string[] elements)
+    public static string CreatePath(params string[] elements)
     {
         return String.Join(DirectorySeparator, elements);
     }
